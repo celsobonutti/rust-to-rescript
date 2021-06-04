@@ -1,4 +1,4 @@
-module Rust where
+module Types.Rust where
 
 import Data.Map (Map)
 import Data.Text (Text)
