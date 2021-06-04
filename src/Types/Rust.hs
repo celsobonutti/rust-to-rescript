@@ -1,8 +1,11 @@
 module Types.Rust where
 
-import Data.Map (Map)
-import Data.Text (Text)
-import Protolude (Maybe)
+import           Data.Map                       ( Map )
+import           Data.Text                      ( Text )
+import           Protolude
+
+newtype Identifier = Identifier Text deriving (Eq, Show, Ord)
+newtype CIdentifier = CIdentifier Text deriving (Eq, Show, Ord)
 
 data Number
   = U8
@@ -17,17 +20,7 @@ data Number
   | USIZE
   | F32
   | F64
-
-newtype Tuple
-  = Tuple [T]
-
-data Enum
-  = Enum { name :: Text
-         , variants :: Map Text (Maybe [T])
-         }
-
-data Struct
-  = Map Text T
+  deriving (Eq, Show)
 
 data Primitive
   = Bool
@@ -38,7 +31,33 @@ data Primitive
   | NumSlice Number
   | JsValue
   | JsValueSlice
+  | Unit
+  deriving (Eq, Show)
+
+newtype Tuple
+  = Tuple [T]
+  deriving (Eq, Show)
+
+data Enum = Enum
+  { name     :: CIdentifier
+  , variants :: Map Identifier (Maybe [T])
+  }
+  deriving (Eq, Show)
+
+data Struct
+  = Struct
+    { name   :: CIdentifier
+    , fields :: Map Identifier T
+    }
+  | TupleStruct
+    { name :: CIdentifier
+    , types :: Tuple
+    }
+    deriving (Eq, Show)
 
 data T
   = Primitive Primitive
   | Struc Struct
+  | Ref T
+  | Tup Tuple
+  deriving (Eq, Show)

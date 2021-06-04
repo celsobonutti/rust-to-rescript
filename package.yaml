@@ -1,10 +1,10 @@
 name:                rust-to-rescript
 version:             0.1.0.0
-github:              "githubuser/rust-to-rescript"
+github:              "celsobonutti/rust-to-rescript"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2021 Author name here"
+author:              "Celso Bonutti"
+maintainer:          "i.am@cel.so"
+copyright:           "2021 Celso Bonutti"
 
 extra-source-files:
 - README.md
@@ -34,8 +34,8 @@ dependencies:
 
 default-extensions:
   - NoImplicitPrelude
-  - OverloadedStrings
   - DisambiguateRecordFields
+  - OverloadedStrings
   - NamedFieldPuns
   - DataKinds
   - DeriveGeneric

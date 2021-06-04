@@ -1,8 +1,8 @@
 module Types.ReScript where
 
-import Data.Map (Map)
-import Data.Text (Text)
-import Protolude (Maybe)
+import           Data.Map                       ( Map )
+import           Data.Text                      ( Text )
+import           Protolude
 
 data Primitive
   = String
@@ -11,22 +11,27 @@ data Primitive
   | Integer
   | Float
   | Unit
+  deriving (Eq, Show, Ord)
 
 newtype Tuple
   = Tuple [T]
+  deriving (Eq, Show, Ord)
 
-data Record
-  = Map Text T
+data Record = Map Text T
+  deriving (Eq, Show, Ord)
 
-data Variant
-  = Variant { name :: Text
-            , variants :: Map Text (Maybe [T])
-            }
+data Variant = Variant
+  { name     :: Text
+  , variants :: Map Text (Maybe [T])
+  }
+  deriving (Eq, Show, Ord)
 
-data PolyVariant
-  = PolyVariant { name :: Text
-                , variants :: Map Text (Maybe [Text])
-                }
+
+data PolyVariant = PolyVariant
+  { name     :: Text
+  , variants :: Map Text (Maybe [Text])
+  }
+  deriving (Eq, Show, Ord)
 
 data T
   = Primitive Primitive
@@ -34,3 +39,4 @@ data T
   | Rec Record
   | Var Variant
   | Polyvar PolyVariant
+  deriving (Eq, Show, Ord)

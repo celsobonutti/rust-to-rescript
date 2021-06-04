@@ -1,8 +1,11 @@
 module Main where
 
-import Protolude
+import           Codegen
+import           Parser
+import           Protolude
+import           Text.Megaparsec
 
-import Lib
+import           Lib
 
 main :: IO ()
 main = print "memes"
